@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../static/img/Logo_Hamburgueria"> 
+    <title>Pizzas</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        
+        body{
+            background-color: #8b0000a4; 
+        }
+        
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff; 
+            color: #fff; 
+            border: none;
+            border-radius: 5px;
+            text-decoration: none; 
+            transition: background-color 0.3s ease; 
+            margin-top: 20px; 
+        }
+
+        .back-button:hover {
+            background-color: #0056b3; 
+            color: #fff; 
+        }
+
+        .pizza-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .pizza-item {
+            width: calc(30% - 10px);
+            text-align: center;
+            overflow: hidden; 
+        }
+
+        .pizza-item img {
+            width: 100%;
+            height: 200px; 
+            object-fit: cover; 
+            cursor: pointer; 
+        }
+
+        .cart {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .cart-button {
+            margin: 0 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .pizza-description,
+        .pizza-price {
+            display: inline-block;
+            background-color: #000;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 5px; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Cardápio de Pizzas</h1>
+    <div class="pizza-container">
+        <div class="pizza-item" onclick="addToCart('Pizza de calabresa')">
+            <img src="https://www.anamariareceitas.com.br/wp-content/uploads/2023/06/Falsa-pizza-de-calabresa-e-mussarela.jpg" alt="Pizza de calabresa">
+            <div class="pizza-description">Descrição: Deliciosa pizza de calabresa</div>
+            <div class="pizza-price">Preço: R$ 40</div>
+        </div>
+        <div class="pizza-item" onclick="addToCart('Pizza de Bacon com milho')">
+            <img src="https://big10.com.br/wp-content/uploads/2021/05/Bacon.jpg" alt="Pizza de Bacon">
+            <div class="pizza-description">Descrição: Deliciosa pizza de Bacon com milho</div>
+            <div class="pizza-price">Preço: R$ 40</div>
+        </div>
+        <div class="pizza-item" onclick="addToCart('Pizza de queijo')">
+            <img src="https://www.receitasnestle.com.br/sites/default/files/styles/recipe_detail_desktop/public/srh_recipes/d036cd01122da62bf581784f52d99b3a.jpg?itok=6Z4x3t4u" alt="Pizza de queijo">
+            <div class="pizza-description">Descrição: Deliciosa pizza de queijo</div>
+            <div class="pizza-price">Preço: R$ 40</div>
+        </div>
+        <div class="pizza-item" onclick="addToCart('Pizza de lombo')">
+            <img src="../static/img/pizza de lombo.jpg" alt="Pizza de lombo">
+            <div class="pizza-description">Descrição: Deliciosa pizza de lombo</div>
+            <div class="pizza-price">Preço: R$ 40</div>
+        </div>
+        <div class="pizza-item" onclick="addToCart('Pizza dois amores')">
+            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS864H7D_EueAoiCKjvm3dkThTQtL2xSFIEqsT_m0c1VybFybEH" alt="Pizza dois amores">
+            <div class="pizza-description">Descrição: Deliciosa pizza de dois amores</div>
+            <div class="pizza-price">Preço: R$ 40</div>
+        </div>
+        <div class="pizza-item" onclick="addToCart('Pizza de Frango com Catupiry')">
+            <img src="https://www.sabornamesa.com.br/media/k2/items/cache/ada34cd2101afafaba465aad112ee3c1_XL.jpg" alt="Pizza de Frango com Catupiry">
+            <div class="pizza-description">Descrição: Deliciosa pizza de Frango com Catupiry</div>
+            <div class="pizza-price">Preço: R$ 40</div>
+        </div>
+    </div>
+
+    
+    <div class="cart">
+        <h2>Carrinho</h2>
+        <ul id="cart-items"></ul> 
+        <button class="cart-button" onclick="removeFromCart()">Remover Pedido</button> 
+        <button class="cart-button" onclick="checkout()">Completar Pedido</button> 
+    </div>
+
+    <script>
+        var cart = [];
+
+        function addToCart(item) {
+            cart.push(item);
+            displayCart();
+        }
+
+        function removeFromCart() {
+            cart = [];
+            displayCart();
+        }
+
+        function displayCart() {
+            var cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+
+            cart.forEach(function(item) {
+                var listItem = document.createElement('li');
+                listItem.textContent = item;
+                cartItems.appendChild(listItem);
+            });
+        }
+
+        function checkout()
+        {
+            alert('Pedido completo!');
+            cart = [];
+            displayCart();
+        }
+    </script>
+    <div class="center-button">
+        <a href="/" class="back-button">Voltar</a>
+    </div>
+</body>
+</html>

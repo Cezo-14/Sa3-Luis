@@ -1,0 +1,20 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senhor C lanches</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" href="../static/img/Logo_Hamburgueria"> 
+</head>
+<body>
+    <h1>Bem vindo ao Senhor C</h1>
+    <img src="../static/img/Logo_Hamburgueria" alt="burger"> 
+    <button onclick="window.location.href = '{% url 'xburger' %}';">Smash X</button>
+    <button onclick="window.location.href = '{% url 'pizza' %}';">Pizzas</button> 
+    <button onclick="window.location.href = '{% url 'contato' %}';">Contato</button> 
+</body>
+</html>
+

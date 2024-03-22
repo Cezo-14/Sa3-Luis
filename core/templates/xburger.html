@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../static/img/Logo_Hamburgueria"> 
+    <title>hambúrgueres</title>
+    <style>
+        body {
+            background-color: #ebc185; 
+        }
+        h1 {
+            text-align: center; 
+        }
+
+                .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff; 
+            color: #fff; 
+            border: none;
+            border-radius: 5px;
+            text-decoration: none; 
+            transition: background-color 0.3s ease; 
+        }
+
+        .back-button:hover {
+            background-color: #0056b3; 
+            color: #fff; 
+        }
+
+        .container {
+            display: flex; 
+            justify-content: center; 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 20px; 
+            justify-content: center; 
+            max-width: 600px; 
+            margin: 0 auto; 
+        }
+
+        
+        .grid-item {
+            text-align: center; 
+            overflow: hidden; 
+        }
+
+        
+        .grid-item img {
+            max-width: 100%; 
+            height: 200px; 
+            object-fit: cover; 
+            cursor: pointer; 
+        }
+
+        .cart {
+            margin-left: 20px; 
+            flex: 1; 
+        }
+
+        .cart-button {
+            margin: 0 10px; 
+            padding: 5px 10px; 
+            border: none; 
+            border-radius: 5px; 
+            background-color: #007bff; 
+            color: #fff; 
+            cursor: pointer; 
+        }
+
+        #cart-items {
+            list-style-type: none; 
+            padding: 0; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Cardápio de Hambúrgueres</h1>
+    <div class="container">
+        <div class="grid-container">
+            <div class="grid-item" onclick="addToCart('Burger padrão')">
+                <img src="https://contents.suitable.app.br/vivaburguer/1683651620059.JPG" alt="Burger padrão">
+                <h2>C Burguer</h2>
+                <p>Descrição: Hambúrguer padrão delicioso</p>
+            </div>
+            <div class="grid-item" onclick="addToCart('Burguer Bacon')">
+                <img src="https://contents.suitable.app.br/vivaburguer/1683651830795.JPG" alt="Burguer Bacon">
+                <h2>C Bacon</h2>
+                <p>Descrição: Hambúrguer com bacon crocante</p>
+            </div>
+            <div class="grid-item" onclick="addToCart('Cremoso Cheddar')">
+                <img src="https://contents.suitable.app.br/vivaburguer/1683650044032.JPG" alt="Cremoso Cheddar">
+                <h2>C Cremoso Cheddar</h2>
+                <p>Descrição: Hambúrguer com queijo cheddar cremoso</p>
+            </div>
+
+            <div class="grid-item" onclick="addToCart('Duplo Bacon')">
+                <img src="https://contents.suitable.app.br/vivaburguer/1683651701449.JPG" alt="Duplo Bacon">
+                <h2>C Duplo Bacon</h2>
+                <p>Descrição: Hambúrguer duplo com generosas fatias de bacon</p>
+            </div>
+            <div class="grid-item" onclick="addToCart('Salada')">
+                <img src="https://contents.suitable.app.br/vivaburguer/1683651386699.JPG" alt="Salada">
+                <h2>C Salada</h2>
+                <p>Descrição: Hambúrguer com vegetais frescos e crocantes</p>
+            </div>
+            <div class="grid-item" onclick="addToCart('Burguer Vegetariano')">
+                <img src="https://contents.suitable.app.br/vivaburguer/1683651535818.JPG" alt="Vegetariano">
+                <h2>Burguer Vegetariano</h2>
+                <p>Descrição: Hambúrguer com ingredientes vegetarianos frescos</p>
+            </div>
+
+            <div class="grid-item" onclick="addToCart('Mafioso')">
+                <img src="../static/img/mafioso.jpg" alt="Mafioso">
+                <h2>C Mafioso</h2>
+                <p>Descrição: Hambúrguer com molho especial à moda italiana</p>
+            </div>
+            <div class="grid-item" onclick="addToCart('Furioso')">
+                <img src="../static/img/furioso.jpg" alt="Furioso">
+                <h2>C Completo</h2>
+                <p>Descrição: Hambúrguer completo com todos os acompanhamentos</p>
+            </div>
+            <div class="grid-item" onclick="addToCart('Onion')">
+                <img src="https://s3-us-west-2.amazonaws.com/anotaai/produtos/1622702361296blob.webp" alt="Onion">
+                <h2>C Onion</h2>
+                <p>Descrição: Hambúrguer com anéis de cebola crocantes</p>
+            </div>
+        </div>
+
+        <div class="cart">
+            <h2>Carrinho</h2>
+            <ul id="cart-items"></ul> 
+            <button class="cart-button" onclick="removeFromCart()">Remover Pedido</button> 
+            <button class="cart-button" onclick="checkout()">Concluir Compra</button> 
+        </div>
+    </div>
+
+    <script>
+        var cart = [];
+
+        function addToCart(item) {
+            cart.push(item); 
+            displayCart(); 
+        }
+
+        function removeFromCart() {
+            cart = []; 
+            displayCart(); 
+        }
+
+        function displayCart() {
+            var cartItems = document.getElementById('cart-items'); 
+            cartItems.innerHTML = ''; 
+
+            cart.forEach(function(item) {
+                var listItem = document.createElement('li'); 
+                listItem.textContent = item; 
+                cartItems.appendChild(listItem); 
+            });
+        }
+
+        function checkout() {
+            alert('Compra concluída! Itens: ' + cart.join(', '));
+
+            cart = [];
+            displayCart(); 
+        }
+
+    </script>
+</body>
+<a href="/" class="back-button">Voltar</a>
+</html>
+
